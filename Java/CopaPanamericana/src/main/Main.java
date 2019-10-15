@@ -35,10 +35,10 @@ public class Main {
 			
 		}
 		if(option == 1) {
-			happyevent.searchViewverWithId(id);
+		//	happyevent.searchViewverWithId(id);
 			menu(0);
 		}else if(option == 2) {
-			happyevent.searchCompetitorWithId(id);
+		//	happyevent.searchCompetitorWithId(id);
 			menu(0);
 		}else if(option == 3) {
 			

@@ -41,8 +41,8 @@ public class Event {
 	public void insert(String id, String firstName, String lastName, String email, String gender, String country, String photo, String birthday) {
 		if(isEmpty()) {
 			Viewver newViewver = new Viewver(id, firstName, lastName, email, gender, country, photo, birthday);
-			newViewver.setLeft(new Event());
-			newViewver.setRight(new Event());
+		//	newViewver.setLeft(new Event());
+		//	newViewver.setRight(new Event());
 			origin = newViewver;
 		} else {
 			if (id.compareTo(origin.getId()) > 0) {
@@ -90,7 +90,7 @@ public class Event {
 		}
 		return msg;
 	}
-	public String showViewversOfACountry() {
+	public String showViewversOfACountry() {  ////REVISAR!////
 		String info = showViewversOfACountry(origin, null, null, "");
 		return info;
 	}
