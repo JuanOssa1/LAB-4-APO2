@@ -1,11 +1,8 @@
 package model;
 
 public class Viewver extends Assistant{
-
-	private Event left;
-	private Event right;
-	
-	
+	private Viewver left;
+	private Viewver right;
 	public Viewver(String id, String firstName, String lastName, String email, String gender, String country,
 			String photo, String birthday) {
 		super(id, firstName, lastName, email, gender, country, photo, birthday);
@@ -13,27 +10,16 @@ public class Viewver extends Assistant{
 		right = null;
 		//id = "0";
 	}
-
-
-
-
-
-	public Event getLeft() {
+	public Viewver getLeft() {
 		return left;
 	}
-
-	public void setLeft(Event left) {
+	public void setLeft(Viewver left) {
 		this.left = left;
 	}
-
-	public Event getRight() {
+	public Viewver getRight() {
 		return right;
 	}
-
-	public void setRight(Event right) {
+	public void setRight(Viewver right) {
 		this.right = right;
 	}
-
-	
-
 }

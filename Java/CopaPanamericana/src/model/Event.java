@@ -11,7 +11,7 @@ public class Event {
 	private Viewver origin;
 	public static String FLATCLUBES = "data//Clubes.txt";
 	public Event() {
-		Viewver origin = new Viewver(null, null, null, null, null, null, null, null);
+		origin = null;
 		//loadClub();
 		// TODO Auto-generated constructor stub
 	}
@@ -38,35 +38,64 @@ public class Event {
 	public String toString() {
 		return origin +"";
 	}
-	public void insert(String id, String firstName, String lastName, String email, String gender, String country, String photo, String birthday) {
-		if(isEmpty()) {
-			Viewver newViewver = new Viewver(id, firstName, lastName, email, gender, country, photo, birthday);
-		//	newViewver.setLeft(new Event());
-		//	newViewver.setRight(new Event());
+	public void insertViewver(String id, String firstName, String lastName, String email, String gender, String country, String photo, String birthday) {
+		Viewver newViewver = new Viewver(id, firstName, lastName, email, gender, country, photo, birthday);
+		if(origin == null) {
 			origin = newViewver;
 		} else {
-			if (id.compareTo(origin.getId()) > 0) {
-				(origin.getRight()).insert(id, firstName, lastName, email, gender, country, photo, birthday);
+			insertViewver(origin, newViewver);
+		}
+	}
+	private void insertViewver(Viewver currentRoot, Viewver newViewver) {
+		if(currentRoot.getId().compareTo(newViewver.getId())>=0) {
+			if(currentRoot.getRight() == null) {
+				currentRoot.setRight(newViewver);
+			} else {
+				insertViewver(currentRoot.getRight(), newViewver);
 			}
-			if(id.compareTo(origin.getId())<0) {
-				(origin.getLeft()).insert(id, firstName, lastName, email, gender, country, photo, birthday);
+		} else {
+			if(currentRoot.getLeft() == null) {
+				currentRoot.setLeft(newViewver);
+			} else {
+				insertViewver(currentRoot.getLeft(), newViewver);
 			}
 		}
 	}
-	public Event searchViewverWithId(String id) {
-		Event viewver = null;
-		if(!isEmpty()) {
+	public String searchViewverWithId(String id) {
+		String msg = "";
+		if(origin != null) {
 			if(id.equals(origin.getId())) {
-				return this;
+				msg = origin.toString();
 			} else {
-				if(id.compareTo(origin.getId())>0) {
-					viewver = origin.getRight().searchViewverWithId(id);
-				} else {
-					viewver = origin.getLeft().searchViewverWithId(id);
-				}
+				msg = searchViewverWithId(origin, id);
 			}
 		}
-		return viewver;
+		return msg;
+	}
+	private String searchViewverWithId(Viewver currentRoot, String id) {
+		String msg = "";
+		if(currentRoot.getId().compareTo(id)>=0) {
+			if(currentRoot.getRight() != null) {
+				if(currentRoot.getRight().getId().equals(id)) {
+					msg = currentRoot.toString();
+				} else {
+					msg = searchViewverWithId(currentRoot.getRight(), id);
+				}
+			} else {
+				msg = "No existe esa id";
+			}
+		}else {
+			if(currentRoot.getLeft() != null) {
+				if(currentRoot.getLeft().getId().equals(id)) {
+					msg = currentRoot.toString();
+				} else {
+					msg = searchViewverWithId(currentRoot.getLeft(), id);
+				} 
+			} else {
+				msg = "No existe esa id"; 
+			}
+		}
+		return msg;
 	}
 	public String searchCompetitorWithId(String id) {
 		String show = "";
@@ -90,10 +119,12 @@ public class Event {
 		}
 		return msg;
 	}
+	/*
 	public String showViewversOfACountry() {  ////REVISAR!////
 		String info = showViewversOfACountry(origin, null, null, "");
 		return info;
 	}
+	
 	private String showViewversOfACountry(Viewver start, Viewver viewver, Viewver viewver2, String info) {
 		
 		if(start.getLeft()!= null) {
@@ -125,35 +156,6 @@ public class Event {
 		search.origin = null;
 		return info;
 	}
-	/*
-	public void delete(String id) {
-		Event deleted = searchViewver(id);
-		if(!deleted.isEmpty()) {
-			if(deleted.sheet() == true) {
-				deleted.origin = null;
-			} else {
-				if((!deleted.origin.getLeft().isEmpty()) && (!deleted.origin.getRight().isEmpty())) {
-					
-						Viewver trim = deleted.origin.getRight().searchMin();
-						deleted.origin.setBirthday(trim.getBirthday());
-						deleted.origin.setEmail(trim.getEmail());
-						deleted.origin.setFirstName(trim.getFirstName());
-						deleted.origin.setGender(trim.getGender());
-						deleted.origin.setId(trim.getId());
-						deleted.origin.setLastName(trim.getLastName());
-						deleted.origin.setLeft(trim.getLeft());
-						deleted.origin.setType(trim.getType());
-					} else {
-						if(deleted.origin.getLeft().isEmpty()) {
-							deleted.origin = deleted.origin.getRight().origin;
-						} else {
-							deleted.origin = deleted.origin.getLeft().origin;
-						}
-					}
-				
-			}
-		}
-	}
 	*/
 	public void loadClub() {	
 		try {
@@ -171,7 +173,7 @@ public class Event {
 					String part6 = parts[5];
 					String part7 = parts[6];
 					String part8 = parts[7];
-					insert(part1,part2,part3,part4,part5,part6,part7,part8);
+					//insert(part1,part2,part3,part4,part5,part6,part7,part8);
 			}	
 			bufferRead.close();
 			frReader.close();	
@@ -338,6 +340,7 @@ public class Event {
 		first.setPrevius(null);
 		return msg;
 	}
+	/*
 	public void randomTakerOfViewver() {
 		int i = 0;
 		int quantity = 50000;
@@ -362,7 +365,7 @@ public class Event {
 			
 		
 	}
-	
+	*/
 		
  }
 		 

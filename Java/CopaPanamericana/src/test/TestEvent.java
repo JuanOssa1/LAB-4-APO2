@@ -11,9 +11,9 @@ public class TestEvent {
 	
 	private void setUpSceneInsert() {
 		event = new Event();
-		event.insert("1", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
-		event.insert("2", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
-		event.insert("4", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
+		event.insertViewver("1", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
+		event.insertViewver("0", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
+		event.insertViewver("4", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
 	}
 	@Test
 	public void testInsert() {
@@ -25,21 +25,21 @@ public class TestEvent {
 	public void testInsertLeft() {
 		setUpSceneInsert();
 		String info = event.getOrigin().getLeft().toString();
-		assertEquals("1,Juan,Forero,cpa@hotmail.com,Masculino,12/12/2021,Colombia,www.lenovo.com,12/12/2021", info);
+		assertEquals("4,Juan,Forero,cpa@hotmail.com,Masculino,12/12/2021,Colombia,www.lenovo.com,12/12/2021", info);
 	}
 	@Test
 	public void testRight() {
 		setUpSceneInsert();
-		String info = event.getOrigin().getRight().getOrigin().getRight().toString();
-		assertEquals("1,Juan,Forero,cpa@hotmail.com,Masculino,12/12/2021,Colombia,www.lenovo.com,12/12/2021", info);
+		String info = event.getOrigin().getRight().toString();
+		assertEquals("0,Juan,Forero,cpa@hotmail.com,Masculino,12/12/2021,Colombia,www.lenovo.com,12/12/2021", info);
 	}
 	private void setUpSceneSearchViewverWithId() {
 		event = new Event();
-		event.insert("1", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
-		event.insert("12", "Kar", "Ossaaaaa", "cpffa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2201");
-		event.insert("123", "li", "Restre", "cpqwea@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2006");
-		event.insert("1234", "kim", "el mejor", "cghhjpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2009");
-		event.insert("12345", "jum", "Otero", "cpaaa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2001");
+		event.insertViewver("1", "Juan", "Forero", "cpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2021");
+		event.insertViewver("12", "Kar", "Ossaaaaa", "cpffa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2201");
+		event.insertViewver("0", "li", "Restre", "cpqwea@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2006");
+		event.insertViewver("1234", "kim", "el mejor", "cghhjpa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2009");
+		event.insertViewver("4", "jum", "Otero", "cpaaa@hotmail.com", "Masculino", "Colombia", "www.lenovo.com", "12/12/2001");
 	}
 	@Test
 	public void testSceneSearchViewverWithIdBegginig() {
@@ -52,13 +52,13 @@ public class TestEvent {
 	public void testSceneSearchViewverWithIdMedium() {
 		setUpSceneSearchViewverWithId();
 		String medium = event.searchViewverWithId("123").toString();
-		assertEquals("123,li,Restre,cpqwea@hotmail.com,Masculino,12/12/2006,Colombia,www.lenovo.com,12/12/2006", medium);
+		assertEquals("0,li,Restre,cpqwea@hotmail.com,Masculino,12/12/2006,Colombia,www.lenovo.com,12/12/2006", medium);
 	}
 	@Test
 	public void testSceneSearchViewverWithIdFinal() {
 		setUpSceneSearchViewverWithId();
 		String finall = event.searchViewverWithId("12345").toString();
-		assertEquals("12345,jum,Otero,cpaaa@hotmail.com,Masculino,12/12/2001,Colombia,www.lenovo.com,12/12/2001", finall);
+		assertEquals("4,jum,Otero,cpaaa@hotmail.com,Masculino,12/12/2001,Colombia,www.lenovo.com,12/12/2001", finall);
 	}
 
 }

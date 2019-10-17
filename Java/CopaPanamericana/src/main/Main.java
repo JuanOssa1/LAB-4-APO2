@@ -112,7 +112,7 @@ public class Main {
 					String part6 = parts[5];
 					String part7 = parts[6];
 					String part8 = parts[7];
-					happyevent.insert(part1,part2,part3,part4,part5,part6,part7,part8);
+					happyevent.insertViewver(part1,part2,part3,part4,part5,part6,part7,part8);
 			}	
 			bufferRead.close();
 			frReader.close();	
