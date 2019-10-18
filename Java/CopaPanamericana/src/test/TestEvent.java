@@ -60,5 +60,11 @@ public class TestEvent {
 		String finall = event.searchViewverWithId("12345").toString();
 		assertEquals("4,jum,Otero,cpaaa@hotmail.com,Masculino,12/12/2001,Colombia,www.lenovo.com,12/12/2001", finall);
 	}
+	@Test
+	public void testShowViewvers() {
+		setUpSceneSearchViewverWithId();
+		String show = event.printlViewvers();
+		assertEquals(show, 1);
+	}
 
 }

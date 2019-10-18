@@ -10,6 +10,7 @@ public class Event {
 	private Competitor first;
 	private Viewver origin;
 	public static String FLATCLUBES = "data//Clubes.txt";
+	String[] levelTree;
 	public Event() {
 		origin = null;
 		//loadClub();
@@ -47,7 +48,7 @@ public class Event {
 		}
 	}
 	private void insertViewver(Viewver currentRoot, Viewver newViewver) {
-		if(currentRoot.getId().compareTo(newViewver.getId())>=0) {
+		if(currentRoot.getId().compareTo(newViewver.getId())>0) {
 			if(currentRoot.getRight() == null) {
 				currentRoot.setRight(newViewver);
 			} else {
@@ -74,7 +75,7 @@ public class Event {
 	}
 	private String searchViewverWithId(Viewver currentRoot, String id) {
 		String msg = "";
-		if(currentRoot.getId().compareTo(id)>=0) {
+		if(currentRoot.getId().compareTo(id)>0) {
 			if(currentRoot.getRight() != null) {
 				if(currentRoot.getRight().getId().equals(id)) {
 					msg = currentRoot.toString();
@@ -156,7 +157,28 @@ public class Event {
 		search.origin = null;
 		return info;
 	}
+	*
 	*/
+	public void printLevel() {
+		levelTree = new String
+	}
+	public String printlViewvers() {
+		return printLevel(origin, "");
+	}
+	private String printLevel(Viewver view, String msg) {
+		String info = "";
+		if(origin != null) {
+			if(origin.getLeft()!= null) {
+				info += origin.getLeft().toString();
+				if(origin.getRight() != null) {
+					info += origin.getRight().toString(); 
+				}
+			} 
+			printLevel(origin.getLeft(), info);
+			printLevel(origin.getRight(), info);
+		}
+		return info;
+	}
 	public void loadClub() {	
 		try {
 			File	file = new File(FLATCLUBES);
@@ -189,14 +211,7 @@ public class Event {
 	
 	
 	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
-	
-	
-	
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	public void addCharacterToTheList(String id, String firstName, String lastName, String email, String gender,String country, String photo, String birthday)  {
 		//validateAvaiableNameForCharacter(firstName);
 		Competitor comp = new Competitor(id, firstName, lastName, email, gender, country, photo, birthday);
@@ -206,65 +221,8 @@ public class Event {
 			comp.setNext(first);
 			first = comp;
 		}
-	}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public String alwaysBringfirst(String id) {
-		String deleted = "";
-		try {
-			deleted = deleteCharacterOfTheListReursive( id, first);
-		} catch (noCharacterFindedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return deleted;
-	}
-	
-	private String deleteCharacterOfTheListReursive(String id, Competitor permanentReference) throws noCharacterFindedException {
-		//permanentReference = first;
-		Competitor before = null;
-		Competitor after = null;
-		String msg = "";
-		//NarutoCharacter temporalCharacter = null;
-		if(permanentReference == null) {
-			return msg;
-		}
-			before = permanentReference.getPrevius();
-			after = permanentReference.getNext();
-			if(permanentReference.getId().equals(id)) {
-				
-				msg = permanentReference.toString();
-				if(before != null && after != null) {
-					before.setNext(after);
-					after.setPrevius(before);
-				}
-				else if(before == null && after == null) {
-					afterAndBeforeAreNull(permanentReference);
-				}
-				else if(before != null && after == null) {
-					afterAreNull(permanentReference);
-				}
-				else if(before == null && after != null) {
-					beforeAreNull(permanentReference);
-				}
-			}else {
-				permanentReference = permanentReference.getNext();
-				return deleteCharacterOfTheListReursive( id,  permanentReference);
-			}
-			
-			
-		if(msg == "") { 
-			throw new noCharacterFindedException("Error!");
-		}
-		return msg;
-	}
-
-	
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
+	}	
 	private String showOneCharacterWithId(String id, Competitor permanentReference) throws noCharacterFindedException {
-				//Competitor before = null;
-				//Competitor after = null;
 				String msg = "";
 				if(permanentReference == null) {
 					return msg;
@@ -281,64 +239,6 @@ public class Event {
 				}
 				return msg;
 				
-	}
-	
-	
-	public String deleteCharacterOfTheList(String id) throws noCharacterFindedException {
-		Competitor newReference = first;
-		Competitor before = null;
-		Competitor after = null;
-		String msg = "";
-		before = newReference.getPrevius();
-		after = newReference.getNext();
-		//NarutoCharacter temporalCharacter = null;
-		while(newReference != null) {
-			if(newReference.getId().equals(id)) {
-				
-				msg = newReference.toString();
-				
-				if(before != null && after != null) {
-					before.setNext(after);
-					after.setPrevius(before);
-				}
-				else if(before == null && after == null) {
-					afterAndBeforeAreNull(newReference);
-				}
-				else if(before != null && after == null) {
-					afterAreNull(newReference);
-				}
-				else if(before == null && after != null) {
-					beforeAreNull(newReference);
-				}
-			}
-			newReference = newReference.getNext();
-		}
-		if(msg == "") {
-			throw new noCharacterFindedException("Error!");
-		}
-		return msg;
-	}
-	private String afterAndBeforeAreNull(Competitor nCharacter) {
-		Competitor newReference = nCharacter;
-		String msg ="Eliminado:"+" "+newReference.toString();
-		newReference = null;
-		return msg;
-	}
-	private String afterAreNull(Competitor nCharacter) {
-		Competitor newReference = nCharacter;
-		String msg = "Eliminado:"+ " "+newReference.toString();
-		Competitor newReferenceCharacter = newReference.getPrevius();
-		first = newReferenceCharacter;
-		first.setNext(null);
-		return msg;
-	}
-	private String beforeAreNull(Competitor nCharacter) {
-		Competitor newReference = nCharacter;
-		String msg = "Eliminado:"+ " "+newReference.toString();
-		Competitor newReferenceCharacter = newReference.getNext();
-		first = newReferenceCharacter;
-		first.setPrevius(null);
-		return msg;
 	}
 	/*
 	public void randomTakerOfViewver() {
@@ -369,7 +269,9 @@ public class Event {
 		
  }
 		 
-		
+//Dudas para tutoria: Revisar el metodo buscar por id viewvers
+//Mostrar arbol de viewvers
+
 
 	
 	
