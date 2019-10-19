@@ -132,7 +132,7 @@ public class Event {
 	}
 	
 	public String printlViewvers() {
-		return printLevel(origin, "");
+		return printLevel(origin, ""); 
 	}
 	private String printLevel(Viewver view, String msg) {
 		String info = "";
@@ -152,7 +152,6 @@ public class Event {
 		}
 		return info;
 	}
-	
 	public String loadClub() {	
 		String msg = "DATOS CARGADOS CON EXITO!!!";
 		try {
@@ -199,7 +198,6 @@ public class Event {
 		} catch (noCharacterFindedException e) {
 			msg = "Esto es embarazoso al parecer ese competidor no existe!";
 		}
-		//msg = comp.toString();
 		return msg;
 	}
 	private Competitor showOneCharacterWithId(String id) throws noCharacterFindedException {
@@ -217,7 +215,6 @@ public class Event {
 			throw new noCharacterFindedException("Error");
 		}
 		return info;
-	
 	}
 	public void addRandomly() {
 		addRandomly(origin);
@@ -235,12 +232,12 @@ public class Event {
 			}
 		
 	}
+	/*
 	public String showTree(String country) {
 		if(origin != null) {
 			
 		}
 		return null;
 	}
+	*/
 } 
-//Dudas para tutoria: Revisar el metodo buscar por id viewvers
-//Mostrar arbol de viewvers

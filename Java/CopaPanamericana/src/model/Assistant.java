@@ -16,7 +16,7 @@ public abstract class Assistant {
 		this.id = id; 
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
+		this.email = email; 
 		this.gender = gender;
 		this.country = country;
 		this.photo = photo;

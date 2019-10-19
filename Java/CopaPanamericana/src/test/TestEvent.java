@@ -47,7 +47,6 @@ public class TestEvent {
 		setUpSceneGeneralSearch();
 		String beginnig = event.searchViewverWithId("1").toString();
 		assertEquals("1,Juan,Forero,cpa@hotmail.com,Masculino,12/12/2021,Colombia,www.lenovo.com,12/12/2021", beginnig);
-		
 	}
 	@Test
 	public void testSceneSearchViewverWithIdMedium() {
