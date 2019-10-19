@@ -13,7 +13,7 @@ public abstract class Assistant {
 	public Assistant(String id, String firstName, String lastName, String email, String gender, String country,
 			String photo, String birthday) {
 		super();
-		this.id = id;
+		this.id = id; 
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

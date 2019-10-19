@@ -28,29 +28,37 @@ public class Main {
 	public void menu(int myOption) {
 		int option = myOption;
 		if(option == 0) {
+			happyevent.addRandomly();
 			showMenuOptions();
-			System.out.println(loadClub());
 				option = dataRead.nextInt();dataRead.nextLine();
-				
-			
 		}
 		if(option == 1) {
-		//	happyevent.searchViewverWithId(id);
+			System.out.println("Ingrese la id del espectador que quiere buscar");
+			String id = dataRead.nextLine();
+			System.out.println(happyevent.searchViewverWithId(id));
 			menu(0);
 		}else if(option == 2) {
-		//	happyevent.searchCompetitorWithId(id);
+			System.out.println("Ingrese la id del competidor");
+			String id = dataRead.nextLine();
+			System.out.println(happyevent.showCompetitor(id));
 			menu(0);
 		}else if(option == 3) {
-			
+			System.out.println("Ingrese el nombre del pais");
+			String country = dataRead.nextLine();
+			System.out.println();
 			menu(0);
 		}else if(option == 4) {
-			
+			System.out.println("Ingrese el nombre del pais");
+			String country = dataRead.nextLine();
+			System.out.println(happyevent.showCompetitorsOfACountry(country));
 			menu(0);
 		}else if(option == 5) {
-			
+			System.out.println("Ingrese el nombre del pais");
+			String country = dataRead.nextLine();
+			happyevent.showViewversPosOrder(country);
 			menu(0);
 		}else if(option == 6) {
-			
+			//happyevent.addRandomly();
 			menu(0);
 		}else if(option == 7) {
 			
@@ -70,7 +78,7 @@ public class Main {
 		}else if(option == 12) {
 			
 			menu(0);
-		}else if(option == 13) {
+		}else if(option == 13) { 
 			
 			menu(0);
 		}else if(option == 14) {
@@ -95,34 +103,7 @@ public class Main {
 		System.out.println("13. ");
 		System.out.println("14. ");	
 	}
-	public String loadClub() {	
-		String status = "||||DATOS CARGADOS CON EXITO!||||";
-		try {
-			File	file = new File(Event.FLATCLUBES);
-			FileReader	frReader = new FileReader(file);
-			BufferedReader	bufferRead = new BufferedReader(frReader);
-			String saveString;
-			while( (saveString = bufferRead.readLine()) != null){
-					String[] parts = saveString.split(",");
-					String part1 = parts[0];
-					String part2 = parts[1];
-					String part3 = parts[2];
-					String part4 = parts[3];
-					String part5 = parts[4];
-					String part6 = parts[5];
-					String part7 = parts[6];
-					String part8 = parts[7];
-					happyevent.insertViewver(part1,part2,part3,part4,part5,part6,part7,part8);
-			}	
-			bufferRead.close();
-			frReader.close();	
-		}
-		catch(Exception e){
-			System.out.println("Ayyyy que man tan de malas");
-			e.printStackTrace();
-			}
-		return status;
-		 }
+	
 }
 
 
@@ -186,14 +167,6 @@ public class Main {
 		//System.out.println(happyevent.alwaysBringfirst("5"));
 		//System.out.println(happyevent.alwaysBringfirst("6"));
 		//System.out.println(happyevent.showCharacters());
-		
-
 	}
-	
-	
-	
-	
-	
-
 }
 */
