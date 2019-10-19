@@ -13,7 +13,7 @@ public class Event {
 	String[] levelTree;
 	public Event() {
 		origin = null;
-		loadClub();
+		//loadClub();
 		// TODO Auto-generated constructor stub
 	}
 	public Competitor getFirst() {
@@ -98,18 +98,6 @@ public class Event {
 		}
 		return msg;
 	}
-	/*
-	public String searchCompetitorWithId(String id) {
-		String show = "";
-		try {
-			show = showOneCharacterWithId( id,  first);
-		} catch (noCharacterFindedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return show;
-	}
-	*/
 	public String showCompetitorsOfACountry(String country) {
 		Competitor newReference = first;
 		String msg = "";
@@ -126,119 +114,23 @@ public class Event {
 		return msg;
 	}
 	public void showViewversPosOrder(String country) {
-		/*return*/ showViewversPosOrder(origin, country);
+		showViewversPosOrder(origin, country);
 	}
 	private void showViewversPosOrder(Viewver view, String country) {
-		//String info = "//";
 		if (view != null) {
-		//	info += view.toString();
 			view.getLeft();
-			//if(view.getLeft().getCountry().equals(country)) {
-				/*info +=*/ showViewversPosOrder(view.getLeft(), country);
-			//} else {
-				//showViewversPosOrder(view.getLeft(), country);
-			//}
+			showViewversPosOrder(view.getLeft(), country);
 			view.getRight();
-			//if(view.getRight().getCountry().equals(country)) {
-				/*info +=*/ showViewversPosOrder(view.getRight(), country);
-			//} else {
-			//	showViewversPosOrder(view.getRight(), country);
+			showViewversPosOrder(view.getRight(), country);
 				if(view.getCountry().equals(country)){
 					System.out.print(view.toString() + ", ");
 				} else {
 					System.out.print("");
 				}
 			}
-			
-			/*
-			if(view.getCountry().equals("Colombia")){
-				System.out.print(view.toString() + ", ");
-			} else {
-				System.out.print("");
-			}
-			*/
-		//}
-		//return info;
-	}
-	/*
-	private String showViewversPosOrder(Viewver view, String info) {
-		//String info = "";
-		if (view != null) {
-			view.getLeft();
-			if(view.getLeft().getCountry().equals("Colombia")) {
-				info +=view.getLeft().toString();
-				showViewversPosOrder(view.getLeft(), info);
-			} else {
-				showViewversPosOrder(view.getLeft(), "");
-			}
-			view.getRight();
-			if(view.getRight().getCountry().equals("Colombia")) {
-				info +=view.getRight().toString();
-				showViewversPosOrder(view.getRight(), info);
-			} else {
-				showViewversPosOrder(view.getRight(), "");
-			}
-			
-			//System.out.print(view.toString() + ", ");	
-		}
-		return info;
-	}
-	*/
-	/*
-	 * private void showViewversPosOrder(Viewver view) {
-		String info = "";
-		if (view != null) {
-			view.getLeft();
-			showViewversPosOrder(view.getLeft());
-			view.getRight();
-			showViewversPosOrder(view.getRight());
-			if(){
-			}
-			System.out.print(view.toString() + ", ");
-			
-		}
-	}
-	public String showViewversOfACountry() {  ////REVISAR!////
-		String info = showViewversOfACountry(origin, null, null, "");
-		return info;
-	}
-	
-	private String showViewversOfACountry(Viewver start, Viewver viewver, Viewver viewver2, String info) {
 		
-		if(start.getLeft()!= null) {
-			info += start.getLeft().getOrigin().toString();
-			showViewversOfACountry(start.getLeft().getOrigin(), start.getLeft().getOrigin(), start.getRight().getOrigin(), info );
-		}
-		if(start.getRight()!= null){
-			info += start.getRight().getOrigin().toString();
-			showViewversOfACountry(start.getLeft().getOrigin(), start.getLeft().getOrigin(), start.getRight().getOrigin(), info );
-			
-		}
-		return info;
 	}
 	
-	
-	public boolean isSheet() {
-		boolean sheet = false;
-		if(origin.getLeft().isEmpty() && origin.getRight().isEmpty()) {
-			sheet = true;
-		}
-		return sheet;
-	}
-	public Viewver searchMin() {
-		Event search = this;
-		while(!search.origin.getLeft().isEmpty()) {
-			search = search.origin.getLeft();
-		}
-		Viewver info = search.origin;
-		search.origin = null;
-		return info;
-	}
-	*
-	*/
-	public void printLevel() {
-		//levelTree = new String
-	}
 	public String printlViewvers() {
 		return printLevel(origin, "");
 	}
@@ -250,13 +142,19 @@ public class Event {
 				if(view.getRight() != null) {
 					info += view.getRight().toString(); 
 				}
-			} 
+			}
+			try {
 			printLevel(origin.getLeft(), info);
 			printLevel(origin.getRight(), info);
+			} catch (StackOverflowError e) {
+				System.out.println("Whoops se ha llenado la memoria " + "\n" ); 
+			}
 		}
 		return info;
 	}
-	public void loadClub() {	
+	
+	public String loadClub() {	
+		String msg = "DATOS CARGADOS CON EXITO!!!";
 		try {
 			File	file = new File(FLATCLUBES);
 			FileReader	frReader = new FileReader(file);
@@ -271,26 +169,19 @@ public class Event {
 					String part5 = parts[4];
 					String part6 = parts[5];
 					String part7 = parts[6];
-					//String part8 = parts[7];
-					insertViewver(part1,part2,part3,part4,part5,part6,part7,part7);
+					String part8 = parts[7];
+					insertViewver(part1,part2,part3,part4,part5,part6,part7,part8);
 			}	
 			bufferRead.close();
 			frReader.close();	
 		}
 		catch(Exception e){
-			System.out.println("Ayyyy que man tan de malas");
-			e.printStackTrace();
+			msg = "OH NO HA OCURRIDO UN FALLO FATAL EN LA CARGA DE DATOS!!!";
 			}
-		//return c;
+		return msg;
+		
 		 }
-	
-	
-	
-	
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	public void addCharacterToTheList(String id, String firstName, String lastName, String email, String gender,String country, String photo, String birthday)  {
-		//validateAvaiableNameForCharacter(firstName);
 		Competitor comp = new Competitor(id, firstName, lastName, email, gender, country, photo, birthday);
 		if(first == null) {	
 			first = comp;
@@ -304,14 +195,14 @@ public class Event {
 		Competitor comp = null;
 		try {
 			comp = showOneCharacterWithId(id);
+			msg = comp.toString();
 		} catch (noCharacterFindedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			msg = "Esto es embarazoso al parecer ese competidor no existe!";
 		}
-		msg = comp.toString();
+		//msg = comp.toString();
 		return msg;
 	}
-	private Competitor showOneCharacterWithId(String id/*, Competitor permanentReference*/) throws noCharacterFindedException {
+	private Competitor showOneCharacterWithId(String id) throws noCharacterFindedException {
 		Competitor newReference = first;
 		Competitor info = null;
 		boolean centinel = false;
@@ -326,23 +217,7 @@ public class Event {
 			throw new noCharacterFindedException("Error");
 		}
 		return info;
-		/*		
-		String msg = "";
-				if(permanentReference == null) {
-					return msg;
-				}
-					if(permanentReference.getId().equals(id)) {
-						msg = permanentReference.toString();	
-					}else {
-						permanentReference = permanentReference.getNext();
-						return showOneCharacterWithId( id,  permanentReference);
-					}
-					
-				if(msg == "") { 
-					throw new noCharacterFindedException("Error!");
-				}
-				return msg;
-				*/
+	
 	}
 	public void addRandomly() {
 		addRandomly(origin);
@@ -352,42 +227,12 @@ public class Event {
 			view.getLeft();
 			addRandomly(view.getLeft());
 			view.getRight();
-			addRandomly(view.getRight());
-				
+			addRandomly(view.getRight());	
 			if(Integer.parseInt(view.getId())%2 == 0){
-				//id, firstName, lastName, email, gender, country, photo, birthday
 				addCharacterToTheList(view.getId(),view.getFirstName(), view.getLastName(), view.getEmail(), view.getGender(), view.getCountry(), view.getPhoto(), view.getBirthday());
-					//System.out.print(view.toString() + ", ");
 			} else {
-					//System.out.print("Cargando");
 				}
 			}
-	/*
-	public void randomTakerOfViewver() {
-		int i = 0;
-		int quantity = 50000;
-		int range = 100000;
-		int array[] = new int[quantity];
-		array[i]=(int)(Math.random()*range+1);
-		for(i = 1; i<quantity; i++) {
-			array[i]=(int)(Math.random()*range+1);
-			for(int j = 0; j<i; j++) {
-				if(array[i]==array[j]) {
-					i--;
-				}
-			}
-		}
-		
-		
-		for(int k=0; k<quantity; k++) {
-			String randonK = String.valueOf(k);
-			Viewver covertInCompetitor = searchViewverWithId(randonK).getOrigin();
-			addCharacterToTheList(covertInCompetitor.getId(),covertInCompetitor.getFirstName(), covertInCompetitor.getLastName(), covertInCompetitor.getEmail(), covertInCompetitor.getGender(), covertInCompetitor.getCountry(), covertInCompetitor.getPhoto(), covertInCompetitor.getBirthday());
-		}
-			
-		
-	}
-	*/
 		
 	}
 	public String showTree(String country) {
@@ -399,19 +244,3 @@ public class Event {
 } 
 //Dudas para tutoria: Revisar el metodo buscar por id viewvers
 //Mostrar arbol de viewvers
-
-
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-

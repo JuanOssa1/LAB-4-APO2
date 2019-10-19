@@ -17,13 +17,11 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Main m = new Main();
-		m.menu(0);
-			
+		m.menu(0);		
 	}
 	public void init() {
 		happyevent = new Event();
 		dataRead = new Scanner(System.in);
-		
 	}
 	public void menu(int myOption) {
 		int option = myOption;
@@ -33,75 +31,52 @@ public class Main {
 				option = dataRead.nextInt();dataRead.nextLine();
 		}
 		if(option == 1) {
+			System.out.println(happyevent.loadClub());
+			menu(0);
+		}
+		if(option == 2) {
 			System.out.println("Ingrese la id del espectador que quiere buscar");
 			String id = dataRead.nextLine();
 			System.out.println(happyevent.searchViewverWithId(id));
 			menu(0);
-		}else if(option == 2) {
+		}else if(option == 3) {
 			System.out.println("Ingrese la id del competidor");
 			String id = dataRead.nextLine();
 			System.out.println(happyevent.showCompetitor(id));
 			menu(0);
-		}else if(option == 3) {
-			System.out.println("Ingrese el nombre del pais");
-			String country = dataRead.nextLine();
-			System.out.println();
-			menu(0);
 		}else if(option == 4) {
 			System.out.println("Ingrese el nombre del pais");
 			String country = dataRead.nextLine();
-			System.out.println(happyevent.showCompetitorsOfACountry(country));
+			System.out.println(happyevent.printlViewvers());
 			menu(0);
 		}else if(option == 5) {
 			System.out.println("Ingrese el nombre del pais");
 			String country = dataRead.nextLine();
+			System.out.println(happyevent.showCompetitorsOfACountry(country));
+			menu(0); 
+		}else if(option == 6) {
+			System.out.println("Ingrese el nombre del pais");
+			String country = dataRead.nextLine();
 			happyevent.showViewversPosOrder(country);
 			menu(0);
-		}else if(option == 6) {
-			//happyevent.addRandomly();
-			menu(0);
 		}else if(option == 7) {
-			
-			menu(0);
-		}else if(option == 8) { 
-			
-			menu(0);
-		}else if(option == 9) {
-			
-			menu(0);
-		}else if(option == 10) {
-			
-			menu(0);
-		}else if(option == 11) {
-			
-			menu(0);
-		}else if(option == 12) {
-			
-			menu(0);
-		}else if(option == 13) { 
-			
-			menu(0);
-		}else if(option == 14) {
-			System.out.println("No guarde");
+			System.out.println("HASTA LA PROXIMA SHJKJKASSDA");
 		}
 	}
-	
 	public void showMenuOptions(){
 		System.out.println("Escriba el numero de la opcion que desea seleccionar");
-		System.out.println("1.  Buscar espectador por id"); 
-		System.out.println("2.  Buscar competidor por id"); 
-		System.out.println("3.  Indicar si un espectador se encuentra en tre los buscados"); 
-		System.out.println("4.  Mostrar toda la informacion de los competidores de un pais deseado"); 
-		System.out.println("5.  Mostrar toda la informacion de los espectadores de un pais deseado en forma consecutiva"); 
-		System.out.println("6.  ");
-		System.out.println("7.  ");
-		System.out.println("8.  ");
-		System.out.println("9.  ");
-		System.out.println("10. ");																												
-		System.out.println("11. ");
-		System.out.println("12. ");
-		System.out.println("13. ");
-		System.out.println("14. ");	
+		System.out.println("1.  PULSE 1 PARA CARGAR TODOS LOS DATOS NECESARIOS PARA EL CORRECTO FUNCIONAMIENTO");
+		System.out.println("    PULSE 1 PARA CARGAR TODOS LOS DATOS NECESARIOS PARA EL CORRECTO FUNCIONAMIENTO");
+		System.out.println("    PULSE 1 PARA CARGAR TODOS LOS DATOS NECESARIOS PARA EL CORRECTO FUNCIONAMIENTO");
+		System.out.println("    PULSE 1 PARA CARGAR TODOS LOS DATOS NECESARIOS PARA EL CORRECTO FUNCIONAMIENTO");
+		System.out.println("    PULSE 1 PARA CARGAR TODOS LOS DATOS NECESARIOS PARA EL CORRECTO FUNCIONAMIENTO");
+		System.out.println("    PULSE 1 PARA CARGAR TODOS LOS DATOS NECESARIOS PARA EL CORRECTO FUNCIONAMIENTO");
+		System.out.println("2.  Buscar espectador por id"); 
+		System.out.println("3.  Buscar competidor por id"); 
+		System.out.println("4.  Mostrar el arbol"); 
+		System.out.println("5.  Mostrar toda la informacion de los competidores de un pais deseado"); 
+		System.out.println("6.  Mostrar toda la informacion de los espectadores de un pais deseado en forma consecutiva"); 
+		System.out.println("7.  Salir");
 	}
 	
 }
