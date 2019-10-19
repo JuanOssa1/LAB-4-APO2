@@ -103,7 +103,7 @@ public class Event {
 		String msg = "";
 		while(newReference != null) {
 			if(newReference.getCountry().equals(country)) {
-				msg += newReference.toString();	
+				msg += newReference.toString() + "||---->||";	
 			}
 			
 			newReference = newReference.getNext();
@@ -123,7 +123,7 @@ public class Event {
 			view.getRight();
 			showViewversPosOrder(view.getRight(), country);
 				if(view.getCountry().equals(country)){
-					System.out.print(view.toString() + ", ");
+					System.out.print(view.toString() + "\n");
 				} else {
 					System.out.print("");
 				}
